@@ -36,13 +36,47 @@ header {
   font-size: 20px;
   font-family: "Caveat", cursive;
 }
+.weather-data {
+  display: flex;
+  justify-content: space-between;
+}
+main {
+  padding: 20px;
+}
 h1 {
-  font-size: 60px;
+  font-size: 70px;
+  font-weight: 900;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 h2 {
   font-size: 20px;
   margin: 2px;
+}
+.weather-temp {
+  display: flex;
+  justify-content: flex-end;
+}
+.current-icon {
+  font-size: 60px;
+  margin: 50px 40px 0 40px;
+}
+.temp {
+  font-size: 80px;
+  font-weight: 800;
+  margin: 30px 10px 4px 20px;
+  text-align: right;
+}
+.metric {
+  font-size: 30px;
+  margin-top: 50px;
+}
+.weather-details {
+  font-size: 20px;
+  text-align: right;
+}
+.weather-details strong {
+  color: #ae8968;
 }
 footer {
   text-align: center;
