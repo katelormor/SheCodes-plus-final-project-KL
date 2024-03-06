@@ -1,0 +1,16 @@
+body {
+  background-color: #ae8968;
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.weather-app {
+  background-color: #e5ecf2;
+  max-width: 500px;
+  border-radius: 10px;
+  border: 10px solid #c0d3df;
+  margin: 60px auto;
+  padding: 40px;
+  box-shadow: 0 30px 50px rgba (65, 50, 100, 0.08);
+}
