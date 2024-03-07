@@ -86,12 +86,13 @@ h2 {
 .weather-forecast {
   display: flex;
   justify-content: space-between;
-  border-top: 2px solid #c0d3df;
+  border-top: 1px solid #c0d3df;
   padding: 20px 0 0 0;
   text-align: center;
 }
 .forecast-date {
-  color: #a5a5a5;
+  color: #9ca2b8;
+  font-weight: 400;
   font-size: 16px;
   margin-bottom: 0;
 }
