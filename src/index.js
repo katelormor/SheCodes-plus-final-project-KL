@@ -78,3 +78,38 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", submitSearch);
 
 searchCity("London");
+
+function getForecast(city) {
+  let apiKey = `82atb6o4834371cad1102b496a40f6fb`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tues"];
+  let forecastHtml = "";
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+        <div class="row">
+        <div class="col">
+        <div class="forecast-date">${day}</div>
+        <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/mist-night.png"
+      alt=""
+      width="40"
+      />
+      <div class="high-low">
+      <span class="high">18º </span>
+      <span class="low">12º</span>
+      </div>
+      </div>
+      </div>
+      `;
+  });
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+getForecast("London");
