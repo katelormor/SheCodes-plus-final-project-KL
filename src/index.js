@@ -21,6 +21,8 @@ function refreshWeather(response) {
   windElement.innerHTML = `${response.data.wind.speed}kmph`;
   timeElement.innerHTML = formatDate(date);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-icon"/>`;
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -79,6 +81,13 @@ searchFormElement.addEventListener("submit", submitSearch);
 
 searchCity("London");
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = `82atb6o4834371cad1102b496a40f6fb`;
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -87,29 +96,29 @@ function getForecast(city) {
 
 function displayForecast(response) {
   console.log(response.data);
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tues"];
   let forecastHtml = "";
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
         <div class="row">
         <div class="col">
-        <div class="forecast-date">${day}</div>
+        <div class="forecast-date">${formatDay(day.time)}</div>
         <img
-        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/mist-night.png"
+        src="${day.condition.icon_url}"
       alt=""
-      width="40"
+      class="forecast-icon"
       />
       <div class="high-low">
-      <span class="high">18º </span>
-      <span class="low">12º</span>
+      <span class="high">${Math.round(day.temperature.maximum)}º </span>
+      <span class="low">${Math.round(day.temperature.minimum)}º</span>
       </div>
       </div>
       </div>
       `;
+    }
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
-getForecast("London");
